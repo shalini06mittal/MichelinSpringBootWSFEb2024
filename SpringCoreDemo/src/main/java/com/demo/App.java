@@ -21,17 +21,40 @@ public class App
     {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
-
         // NOT A SPRING MANAGeD BEAN
         // StringMessageProvider messageProvider = new StringMessageProvider();
-        System.out.println();
-        for(String beanName: context.getBeanDefinitionNames())
-            System.out.println(beanName);
 
-        StringMessageProvider messageProvider1 = (StringMessageProvider) context.getBean("stringMessageProvider");
-        StringMessageProvider messageProvider2 = (StringMessageProvider) context.getBean("stringMessageProvider");
-        System.out.println(messageProvider1.getMessage());
-        System.out.println(messageProvider2.getMessage());
+        System.out.println();
+//        for(String beanName: context.getBeanDefinitionNames())
+//            System.out.println(beanName);
+
+//        StringMessageProvider messageProvider = context.getBean(StringMessageProvider.class);
+//        StringMessageProvider messageProvider = (StringMessageProvider) context.getBean("ob");
+//        System.out.println(messageProvider.getMessage());
+//        messageProvider.setMessage("Hey from spring bean");
+//        System.out.println(messageProvider.getMessage());
+
+        /**
+         * Scoping
+         */
+//        System.out.println("lets see if beans created!!");
+//        StringMessageProvider messageProvider1 = context.getBean(StringMessageProvider.class);
+//        System.out.println(messageProvider1.getMessage());
+//        System.out.println();
+//        StringMessageProvider messageProvider2 = context.getBean(StringMessageProvider.class);
+//        System.out.println(messageProvider2.getMessage());
+//        messageProvider1.setMessage("changed");
+//        System.out.println();
+//        System.out.println(messageProvider1.getMessage());
+//        System.out.println(messageProvider2.getMessage());
+
+        /**
+         * Autowired
+         */
+        NotificationService notificationService = context.getBean(NotificationService.class);
+        System.out.println(notificationService.getMessageProvider());
+        notificationService.sendMessage();
+
 
 
     }

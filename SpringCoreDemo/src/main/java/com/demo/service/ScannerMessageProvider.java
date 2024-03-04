@@ -1,7 +1,9 @@
 package com.demo.service;
 
-import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
+import java.util.Scanner;
+@Component
 public class ScannerMessageProvider implements IMeesageProvider{
 
     public  String getMessage(){
