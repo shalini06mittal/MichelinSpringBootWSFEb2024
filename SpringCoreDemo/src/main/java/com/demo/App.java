@@ -1,5 +1,6 @@
 package com.demo;
 
+import com.demo.service.NotificationService;
 import com.demo.service.StringMessageProvider;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -27,8 +28,11 @@ public class App
         for(String beanName: context.getBeanDefinitionNames())
             System.out.println(beanName);
 
-        StringMessageProvider messageProvider = (StringMessageProvider) context.getBean("stringMessageProvider");
-        messageProvider.setMessage("Hey!!");
-        System.out.println(messageProvider.getMessage());
+        StringMessageProvider messageProvider1 = (StringMessageProvider) context.getBean("stringMessageProvider");
+        StringMessageProvider messageProvider2 = (StringMessageProvider) context.getBean("stringMessageProvider");
+        System.out.println(messageProvider1.getMessage());
+        System.out.println(messageProvider2.getMessage());
+
+
     }
 }
