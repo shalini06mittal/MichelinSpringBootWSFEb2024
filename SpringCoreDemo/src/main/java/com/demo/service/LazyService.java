@@ -6,10 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Lazy
 public class LazyService {
-
     public LazyService() {
         System.out.println("Lazy service intsantiated");
     }
-
 
 }
