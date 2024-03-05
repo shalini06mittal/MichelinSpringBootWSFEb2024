@@ -1,6 +1,8 @@
 package com.demo;
 
 import com.demo.coll.CollectionDemo;
+import com.demo.jdbc.Book;
+import com.demo.jdbc.BookDatabase;
 import com.demo.service.BillingService;
 import com.demo.service.LazyService;
 import com.demo.service.NotificationService;
@@ -31,7 +33,7 @@ public class App
 
         System.out.println("beans loaded");
 
-        context.getBean(LazyService.class);
+    //    context.getBean(LazyService.class);
 //        for(String beanName: context.getBeanDefinitionNames())
 //            System.out.println(beanName);
 
@@ -58,9 +60,9 @@ public class App
         /**
          * Autowired
          */
-        NotificationService notificationService = context.getBean(NotificationService.class);
-        System.out.println(notificationService.getMessageProvider());
-        notificationService.sendMessage();
+//        NotificationService notificationService = context.getBean(NotificationService.class);
+//        System.out.println(notificationService.getMessageProvider());
+//        notificationService.sendMessage();
 
         /**
          * Payment Project
@@ -73,6 +75,17 @@ public class App
          */
 //        CollectionDemo collectionDemo = context.getBean(CollectionDemo.class);
 //        System.out.println(collectionDemo.getFruits());
+
+        /**
+         * database
+         */
+        BookDatabase bookDatabase = context.getBean(BookDatabase.class);
+        System.out.println(bookDatabase.getJdbcTemplate());
+        System.out.println(bookDatabase.getBookCount());
+      //  bookDatabase.insertBook(new Book(2,"HTML",454));
+        bookDatabase.queryForBook(1);
+        bookDatabase.queryForBooks();
+
     }
     // @Bean: only used at method level definition
     @Bean
