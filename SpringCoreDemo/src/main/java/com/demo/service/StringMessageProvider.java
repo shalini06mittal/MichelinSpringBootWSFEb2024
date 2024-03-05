@@ -1,12 +1,14 @@
 package com.demo.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 // spring specific annotation
-@Component("ob")
+@Component//("ob")
+@Primary
 //@Scope("prototype")
 public class StringMessageProvider implements  IMeesageProvider{
 

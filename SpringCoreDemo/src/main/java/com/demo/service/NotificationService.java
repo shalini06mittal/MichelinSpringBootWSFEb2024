@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ public class NotificationService {
      * Dependency Injection : constructor / setter
      */
     @Autowired
-    @Qualifier("ob")
+    @Qualifier("scannerMessageProvider")
     IMeesageProvider messageProvider;
 
     @Autowired
