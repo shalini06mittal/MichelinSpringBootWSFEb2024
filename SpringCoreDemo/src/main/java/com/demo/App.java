@@ -20,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
  * JDK / JVM
  */
 @ComponentScan//(basePackages = {"config","com.demo"})
+
 public class App 
 {
     public static void main( String[] args )

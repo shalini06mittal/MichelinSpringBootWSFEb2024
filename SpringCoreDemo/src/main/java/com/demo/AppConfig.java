@@ -1,17 +1,24 @@
 package com.demo;
 
 import com.demo.coll.Author.Author;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.*;
 
 @Configuration
+@PropertySource("classpath:db.properties")
 public class AppConfig {
+
+    @Value("${driver}")
+    private String driver;
 
     @Bean
     public List<String> getFruits()
     {
+        System.out.println(driver);
         System.out.println("fruits created");
         return Arrays.asList("Apples","Oranges","Grapes");
     }
