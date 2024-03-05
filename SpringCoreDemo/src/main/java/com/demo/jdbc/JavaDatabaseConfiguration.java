@@ -18,7 +18,7 @@ public class JavaDatabaseConfiguration {
     private String driver;
     @Value("${url}")
     private String url;
-    @Value("${username}")
+    @Value("${dbusername}")
     private String username;
     @Value("${password}")
     private String password;
