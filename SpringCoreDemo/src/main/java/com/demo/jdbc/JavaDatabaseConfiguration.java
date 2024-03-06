@@ -27,6 +27,7 @@ public class JavaDatabaseConfiguration {
     public DataSource getDataSource()
     {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        // jasypt : encryption
 //        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 //        dataSource.setUrl("jdbc:mysql://localhost:8889/java");
 //        dataSource.setUsername("root");
