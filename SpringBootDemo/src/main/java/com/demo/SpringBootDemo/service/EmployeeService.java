@@ -2,14 +2,21 @@ package com.demo.SpringBootDemo.service;
 
 import com.demo.SpringBootDemo.entity.Address;
 import com.demo.SpringBootDemo.entity.Employee;
+import com.demo.SpringBootDemo.exception.InvalidCredentialsException;
 import com.demo.SpringBootDemo.repo.AddressRepository;
 import com.demo.SpringBootDemo.repo.EmployeeRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,6 +70,65 @@ public class EmployeeService {
     public Employee findEmployeeByEmail(String email){
         return this.employeeRepository.findByEmail(email);
     }
+    public Employee getEmployeeById(int eid) {
+        System.out.println("Emp service "+eid);
+        return this.employeeRepository
+                .findById(eid).orElseThrow(()-> new EntityNotFoundException("Employee "+eid+" not found"));
+    }
+    public List<Employee> getEmployees(){
+        List<Employee> employees = new ArrayList<Employee>();
+        this.employeeRepository.findAll().forEach(employees::add);
+        return employees;
+    }
+
+    // 50 records : 4 5
+    public Page<Employee> getFilteredEmployees(Integer pageno, Integer size){
+
+
+        Pageable pageable = PageRequest.of(pageno, size, Sort.by(Sort.Direction.DESC, "email"));
+
+        List<Employee> employees = new ArrayList<Employee>();
+
+        return this.employeeRepository.findAll(pageable);
+
+    }
+
+    public Employee updateEmployee(Employee employee) {
+        if(!this.employeeRepository.existsById(employee.getEid()))
+            throw new EntityNotFoundException("Employee "+employee.getEid()+" not found and cannot be updated");
+        return this.employeeRepository.save(employee);
+    }
+
+    @Transactional
+    public boolean deleteEmployee(int eid) {
+        if(!this.employeeRepository.existsById(eid))
+            throw new EntityNotFoundException("Employee "+eid+" not found and cannot be deleted");
+        this.employeeRepository.deleteById(eid);
+        return true;
+    }
+//    @Transactional
+//    public boolean deleteAddressByEmployeeId(int eid) {
+//        if(!this.employeeRepository.existsById(eid))
+//            throw new EntityNotFoundException("Employee "+eid+" not found and cannot be deleted");
+//        Integer addressid = addressRepository.findAddressIdByEmployeeEid(eid) ;
+//        System.out.println("address id "+addressid);
+//        if(addressid!= null)
+//            this.addressRepository.deleteById(addressid);
+//        return true;
+//    }
+
+    public boolean loginEmployee(String email, String password) throws InvalidCredentialsException
+    {
+
+        String pwd = this.employeeRepository.findPasswordByEmployeeEmail(email);
+        if(pwd!=null)
+        {
+            if(pwd.equals(password))
+                return true;
+        }
+        throw new InvalidCredentialsException("Invalid credentials, Please try again");
+    }
+
 
 
 

@@ -12,6 +12,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     public Employee findByAddressAid(int aid);
     public List<Employee> findByAddressCity(String city);
 
+    
     // select password from employee where email=?
     @Query("select password from Employee where email=:email")
     public String findPasswordByEmployeeEmail(String email);

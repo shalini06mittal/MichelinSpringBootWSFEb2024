@@ -7,6 +7,7 @@ import com.demo.SpringBootDemo.service.NotificationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 //https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties.data
@@ -60,7 +61,33 @@ public class SpringBootDemoApplication {
 //
 //		employeeService.insertEmployeeAndAddress(e1);
 
-		System.out.println(employeeService.findEmployeeByEmail("shalini@gmail.com"));
+//		for(int i=6;i<=50;i++)
+//		{
+//			Employee e1 = new Employee();
+//			e1.setEname("Emp "+i);
+//			e1.setEmail("emp"+i+"@test.com");
+//			e1.setPassword("emp"+i);
+//			e1.setPhone(i+"234567890");
+//			Address a1 = new Address();
+//			a1.setCity("city "+i);
+//			a1.setCountry("country "+i);
+//			a1.setZipcode(i+"234");
+//			e1.setAddress(a1);
+//			employeeService.insertEmployeeAndAddress(e1);
+//		}
+
+
+//		System.out.println(employeeService.findEmployeeByEmail("shalini@gmail.com"));
+
+		/**
+		 * pagination
+		 */
+		Page<Employee> pages = employeeService.getFilteredEmployees(0, 5);
+		System.out.println(pages.getNumberOfElements());
+		System.out.println(pages.getTotalPages());
+		System.out.println(pages.getTotalElements());
+		for(Employee emp :pages.getContent())
+			System.out.println(emp);
 	}
 
 }
