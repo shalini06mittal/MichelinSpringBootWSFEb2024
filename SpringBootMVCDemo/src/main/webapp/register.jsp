@@ -1,7 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">NorthernTrust</a>
+    <a class="navbar-brand" href="#">EMS</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,11 +39,6 @@
 		<h1>Register Customer</h1>
 		<form action="register" method="post">
 			<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">Username
-				</label> <input type="text" class="form-control" name="username"
-					id="formGroupExampleInput2" placeholder="Username">
-			</div>
-			<div class="mb-3">
 				<label for="formGroupExampleInput2" class="form-label">Email
 				</label> <input type="email" class="form-control" name="email"
 					id="formGroupExampleInput2" placeholder="Email">
@@ -65,19 +59,6 @@
 					id="formGroupExampleInput2" placeholder="Password">
 			</div>
 
-
-			<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">Password
-				</label> <input type="password" class="form-control" name="password"
-					id="formGroupExampleInput2" placeholder="Password">
-			</div>
-			<!-- <select class="form-select" aria-label="Default select example"
-			 name="country">
-			 <c:forEach items="${countries }" var="country">
-			 	<option value=${country }>${country }</option>
-			 </c:forEach>
-
-			</select> -->
 			<button type="submit" class="btn btn-primary">Register</button>
 		</form>
 	</div>
