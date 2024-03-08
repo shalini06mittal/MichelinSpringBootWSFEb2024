@@ -4,6 +4,7 @@ import com.mvc.SpringBootMVCDemo.entity.Employee;
 import com.mvc.SpringBootMVCDemo.exception.InvalidCredentialsException;
 import com.mvc.SpringBootMVCDemo.service.EmployeeService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,11 +36,15 @@ public class LoginController {
 //    }
 
     @PostMapping("/login")
-    public String validateEmployee (Employee emp, Map<String, String > errorMap ){
+    public String validateEmployee (Employee emp, Map<String, String > errorMap, HttpSession session ){
         System.out.println(emp);
         try {
             if(employeeService.loginEmployee(emp.getEmail(), emp.getPassword())) {
                 System.out.println("login sucess");
+                // URL Rewriting, cookies, hidden from fields
+                // HttpSession
+//                return "redirect:welcome?email="+emp.getEmail();
+                session.setAttribute("email", emp.getEmail());
                 return "redirect:welcome";
             }
         } catch (InvalidCredentialsException e) {
@@ -65,5 +70,15 @@ public class LoginController {
         System.out.println("out ***********");
         return "redirect:register";
     }
+
+    @GetMapping("/logout")
+    public String logoutPage(HttpSession session)
+    {
+        session.removeAttribute("email");
+        session.invalidate();
+        return "redirect:login";
+    }
+
+
 
 }

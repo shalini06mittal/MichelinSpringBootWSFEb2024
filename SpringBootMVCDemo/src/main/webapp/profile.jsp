@@ -26,7 +26,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="profile?email="+${email}>Profile</a>
+          <a class="nav-link" href="profile">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logout">Logout</a>
@@ -36,6 +36,7 @@
     </div>
   </div>
 </nav>
+<h1>Your Profile</h1>
 <h1>Welcome ${email}!!</h1>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-
+    pageEncoding="UTF-8" isELIgnored="false" import="com.mvc.SpringBootMVCDemo.entity.Employee"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,26 @@
     </div>
   </div>
 </nav>
-<h1>Welcome ${email}!!</h1>
+<h1>Employee Details</h1>
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Action</th>
+</tr>
+<%
+    List<Employee> employees = (List<Employee>)request.getAttribute("employees");
+    for(Employee emp: employees){
+%>
+    <tr>
+        <td><%=emp.getEname()%></td>
+        <td><%=emp.getPhone()%></td>
+        <td><a href="delete?id="+<%=emp.getEname()%>>Delete</a></td>
+    </tr>
+<%
+}
+%>
 </body>
+
 </html>
 
