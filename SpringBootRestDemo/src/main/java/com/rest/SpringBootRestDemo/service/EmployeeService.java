@@ -53,7 +53,8 @@ public class EmployeeService {
     public Page<Employee> getFilteredEmployees(Integer pageno, Integer size){
 
 
-        Pageable pageable = PageRequest.of(pageno, size, Sort.by(Sort.Direction.DESC, "email"));
+//        Pageable pageable = PageRequest.of(pageno, size, Sort.by(Sort.Direction.DESC, "email"));
+        Pageable pageable = PageRequest.of(pageno, size);
 
         List<Employee> employees = new ArrayList<Employee>();
 

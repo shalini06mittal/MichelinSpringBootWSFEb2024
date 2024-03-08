@@ -37,5 +37,17 @@ SpringBootRestDemoApplication {
 
 		 employeeService.insertEmployee(em);
 
+		for(int i=1;i<=50;i++)
+		{
+			Employee e1 = new Employee();
+			e1.setEname("Emp "+i);
+			e1.setEmail("emp"+i+"@test.com");
+			e1.setPassword("emp"+i);
+			e1.setPhone(i+"234567890");
+
+			employeeService.insertEmployee(e1);
+		}
+
+
 	}
 }
