@@ -43,6 +43,7 @@
     <th>Phone</th>
     <th>Action</th>
 </tr>
+
 <%
     List<Employee> employees = (List<Employee>)request.getAttribute("employees");
     for(Employee emp: employees){
@@ -50,7 +51,7 @@
     <tr>
         <td><%=emp.getEname()%></td>
         <td><%=emp.getPhone()%></td>
-        <td><a href="delete?id="+<%=emp.getEname()%>>Delete</a></td>
+        <td><a href="delete?email=<%=emp.getEmail()%>">Delete</a></td>
     </tr>
 <%
 }

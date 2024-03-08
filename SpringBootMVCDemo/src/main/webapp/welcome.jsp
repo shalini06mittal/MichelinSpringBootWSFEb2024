@@ -36,6 +36,7 @@
     </div>
   </div>
 </nav>
+<%=session.getAttribute("email")%>
 <h1>Welcome ${email}!!</h1>
 </body>
 </html>
